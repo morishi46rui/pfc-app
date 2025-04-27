@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // OpenAPI generated routes start
 Route::prefix('v1')->group(function () {
     Route::get('/sample', 'App\Http\Controllers\Api\V1\SampleController@index');
-    Route::get('/basal-metabolism', 'App\Http\Controllers\Api\V1\MetabolismController@index');
+    Route::post('/basal-metabolism', 'App\Http\Controllers\Api\V1\MetabolismController@index');
 });
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {

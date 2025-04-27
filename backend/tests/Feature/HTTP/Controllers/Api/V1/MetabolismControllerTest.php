@@ -17,7 +17,15 @@ class MetabolismControllerTest extends TestCase
     public function basal_metabolism_レスポンス200が返ること(): void
     {
         Spectator::using('api-docs.json');
-        $this->getJson('/api/v1/basal-metabolism')
+
+        $request = [
+            'age' => 25,
+            'height' => 170,
+            'weight' => 70,
+            'gender' => 'male',
+        ];
+
+        $this->postJson('/api/v1/basal-metabolism', $request)
             ->assertValidRequest()
             ->assertValidResponse(200);
     }

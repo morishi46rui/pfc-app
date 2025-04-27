@@ -16,13 +16,24 @@
     ],
     "paths": {
         "/basal-metabolism": {
-            "get": {
+            "post": {
                 "tags": [
                     "Metabolism"
                 ],
                 "summary": "基礎代謝量の計算",
                 "description": "基礎代謝量を計算する",
                 "operationId": "calculateBasalMetabolism",
+                "requestBody": {
+                    "description": "基礎代謝量計算リクエスト",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/calculateBasalMetabolismRequest"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "計算結果を返却",
@@ -84,6 +95,43 @@
     },
     "components": {
         "schemas": {
+            "calculateBasalMetabolismRequest": {
+                "title": "基礎代謝量計算リクエスト",
+                "required": [
+                    "age",
+                    "height",
+                    "weight",
+                    "gender"
+                ],
+                "properties": {
+                    "age": {
+                        "description": "年齢",
+                        "type": "integer",
+                        "example": 25
+                    },
+                    "height": {
+                        "description": "身長 (cm)",
+                        "type": "integer",
+                        "example": 170
+                    },
+                    "weight": {
+                        "description": "体重 (kg)",
+                        "type": "integer",
+                        "example": 70
+                    },
+                    "gender": {
+                        "description": "性別",
+                        "type": "string",
+                        "enum": [
+                            "male",
+                            "female",
+                            "other"
+                        ],
+                        "example": "male"
+                    }
+                },
+                "type": "object"
+            },
             "metabolism": {
                 "title": "代謝関連情報",
                 "required": [
