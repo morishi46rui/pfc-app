@@ -36,6 +36,9 @@ seed:
 prune:
 	docker system prune
 
+test:
+	docker compose run --rm app bash -c "php artisan test"
+
 # lintとformat
 fix:
 	make fixb
