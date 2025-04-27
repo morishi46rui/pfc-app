@@ -15,6 +15,40 @@
         }
     ],
     "paths": {
+        "/basal-metabolism": {
+            "get": {
+                "tags": [
+                    "Metabolism"
+                ],
+                "summary": "基礎代謝量の計算",
+                "description": "基礎代謝量を計算する",
+                "operationId": "calculateBasalMetabolism",
+                "responses": {
+                    "200": {
+                        "description": "計算結果を返却",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/basalMetabolismResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/403"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/422"
+                    }
+                }
+            }
+        },
         "/sample": {
             "get": {
                 "tags": [
@@ -50,6 +84,20 @@
     },
     "components": {
         "schemas": {
+            "metabolism": {
+                "title": "代謝関連情報",
+                "required": [
+                    "result"
+                ],
+                "properties": {
+                    "result": {
+                        "description": "基礎代謝量の計算結果",
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
             "user": {
                 "title": "ユーザー",
                 "description": "ユーザー",
@@ -238,6 +286,18 @@
                     }
                 },
                 "type": "object"
+            },
+            "basalMetabolismResponse": {
+                "title": "基礎代謝量計算結果",
+                "required": [
+                    "result"
+                ],
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/metabolism/properties/result"
+                    }
+                },
+                "type": "object"
             }
         },
         "responses": {
@@ -315,6 +375,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Metabolism",
+            "description": "代謝関連"
+        },
         {
             "name": "Sample",
             "description": "サンプル"

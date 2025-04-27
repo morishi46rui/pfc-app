@@ -16,4 +16,6 @@ use OpenApi\Attributes as OA;
     url: 'http://localhost:8000/api/v1',
     description: 'Localhost API Server'
 )]
-class OpenApi {}
+class OpenApi
+{
+}
