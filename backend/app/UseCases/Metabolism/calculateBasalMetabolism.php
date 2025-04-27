@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\UseCases\Metabolism;
 
 use App\Http\Requests\Metabolism\CalculateBasalMetabolismRequest;
+use App\Utils\Metabolism\BasalMetabolismCalculator;
 use OpenApi\Attributes as OA;
 
 #[OA\Schema(
@@ -14,20 +15,24 @@ use OpenApi\Attributes as OA;
     properties: [
         new OA\Property(
             property: 'result',
-            ref: '#/components/schemas/metabolism/properties/result',
+            type: 'number',
+            format: 'float',
+            description: '基礎代謝量（kcal/日）',
+            example: 1550.72
         ),
     ]
 )]
-
 class CalculateBasalMetabolism
 {
     public function __invoke(CalculateBasalMetabolismRequest $request): array
     {
-        $age = $request->input('age');
-        $height = $request->input('height');
-        $weight = $request->input('weight');
-        $gender = $request->input('gender');
+        $bmr = BasalMetabolismCalculator::calculate(
+            $request->input('gender'),
+            $request->input('weight'),
+            $request->input('height'),
+            $request->input('age')
+        );
 
-        return ['result' => 1];
+        return ['result' => round($bmr, 2)];
     }
 }

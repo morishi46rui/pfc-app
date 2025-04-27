@@ -124,8 +124,7 @@
                         "type": "string",
                         "enum": [
                             "male",
-                            "female",
-                            "other"
+                            "female"
                         ],
                         "example": "male"
                     }
@@ -139,9 +138,10 @@
                 ],
                 "properties": {
                     "result": {
-                        "description": "基礎代謝量の計算結果",
-                        "type": "integer",
-                        "example": 1
+                        "description": "計算された基礎代謝量（kcal/日）",
+                        "type": "number",
+                        "format": "float",
+                        "example": 1550.72
                     }
                 },
                 "type": "object"
@@ -342,7 +342,10 @@
                 ],
                 "properties": {
                     "result": {
-                        "$ref": "#/components/schemas/metabolism/properties/result"
+                        "description": "基礎代謝量（kcal/日）",
+                        "type": "number",
+                        "format": "float",
+                        "example": 1550.72
                     }
                 },
                 "type": "object"

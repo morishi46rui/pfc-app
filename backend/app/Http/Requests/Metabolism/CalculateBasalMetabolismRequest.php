@@ -21,7 +21,7 @@ use OpenApi\Attributes as OA;
                 type: 'string',
                 description: '性別',
                 example: 'male',
-                enum: ['male', 'female', 'other']
+                enum: ['male', 'female']
             ),
         ]
     )
@@ -39,7 +39,7 @@ class CalculateBasalMetabolismRequest extends FormRequest
             'age' => 'required|integer|min:0|max:120',
             'height' => 'required|integer|min:0|max:300',
             'weight' => 'required|integer|min:0|max:500',
-            'gender' => 'required|string',
+            'gender' => 'required|string|in:male,female',
         ];
     }
 }

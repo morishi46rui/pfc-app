@@ -13,9 +13,10 @@ use OpenApi\Attributes as OA;
     properties: [
         new OA\Property(
             property: 'result',
-            type: 'integer',
-            description: '基礎代謝量の計算結果',
-            example: 1
+            type: 'number',
+            format: 'float',
+            description: '計算された基礎代謝量（kcal/日）',
+            example: 1550.72
         ),
     ]
 )]
